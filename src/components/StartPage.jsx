@@ -6,18 +6,16 @@ const StartPage = ({ onStartQuiz }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Get API URL from environment variable or use relative path for development
-  const API_URL = process.env.REACT_APP_API_URL || "";
+  // Backend URL (NO trailing slash)
+  const API_URL =
+    "https://quiz-71zku2cda-khushi-rastogis-projects-5e58af8c.vercel.app";
 
-  // Email validation function
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  // Handle quiz start
   const handleStart = async () => {
-    // Validate email
     if (!email.trim()) {
       setError("Please enter your email address");
       return;
@@ -32,14 +30,11 @@ const StartPage = ({ onStartQuiz }) => {
     setLoading(true);
 
     try {
-      // Fetch questions from backend
       const response = await axios.get(`${API_URL}/api/questions`);
 
       if (response.data.results && response.data.results.length === 15) {
-        // Process questions to include all choices in a single array
         const processedQuestions = response.data.results.map((q) => {
           const allChoices = [...q.incorrect_answers, q.correct_answer];
-          // Shuffle choices
           const shuffledChoices = allChoices.sort(() => Math.random() - 0.5);
 
           return {
