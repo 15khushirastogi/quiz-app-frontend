@@ -6,9 +6,9 @@ const StartPage = ({ onStartQuiz }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // NEW BACKEND URL - MAKE SURE THIS IS CORRECT
+  // NEW BACKEND URL (no trailing slash)
   const API_URL =
-    "https://quiz-ixi9yqjic-khushi-rastogis-projects-5e58af8c.vercel.app";
+    "https://quiz-app-backend2-khiacyf5s-khushi-rastogis-projects-5e58af8c.vercel.app";
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,7 +30,7 @@ const StartPage = ({ onStartQuiz }) => {
     setLoading(true);
 
     try {
-      console.log("Calling API:", `${API_URL}/api/questions`); // Debug log
+      console.log("Calling API:", `${API_URL}/api/questions`);
       const response = await axios.get(`${API_URL}/api/questions`);
 
       if (response.data.results && response.data.results.length === 15) {
@@ -78,11 +78,7 @@ const StartPage = ({ onStartQuiz }) => {
         {loading ? "Loading Questions..." : "Start Quiz"}
       </button>
       {error && <div className="error-message">{error}</div>}
-      {loading && (
-        <div className="loading-message">
-          Fetching questions from OpenTDB...
-        </div>
-      )}
+      {loading && <div className="loading-message">Fetching questions...</div>}
     </div>
   );
 };
