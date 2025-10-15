@@ -6,7 +6,7 @@ const StartPage = ({ onStartQuiz }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // UPDATE TO YOUR NEW BACKEND URL
+  // NEW BACKEND URL - MAKE SURE THIS IS CORRECT
   const API_URL =
     "https://quiz-ixi9yqjic-khushi-rastogis-projects-5e58af8c.vercel.app";
 
@@ -30,6 +30,7 @@ const StartPage = ({ onStartQuiz }) => {
     setLoading(true);
 
     try {
+      console.log("Calling API:", `${API_URL}/api/questions`); // Debug log
       const response = await axios.get(`${API_URL}/api/questions`);
 
       if (response.data.results && response.data.results.length === 15) {
