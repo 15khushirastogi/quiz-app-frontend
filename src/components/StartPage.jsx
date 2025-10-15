@@ -6,7 +6,7 @@ const StartPage = ({ onStartQuiz }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Backend URL (NO trailing slash)
+  // Hardcode the backend URL (NO trailing slash)
   const API_URL =
     "https://quiz-71zku2cda-khushi-rastogis-projects-5e58af8c.vercel.app";
 
@@ -30,6 +30,7 @@ const StartPage = ({ onStartQuiz }) => {
     setLoading(true);
 
     try {
+      // Make sure there's only ONE slash before api
       const response = await axios.get(`${API_URL}/api/questions`);
 
       if (response.data.results && response.data.results.length === 15) {
