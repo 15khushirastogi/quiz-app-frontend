@@ -6,9 +6,8 @@ const StartPage = ({ onStartQuiz }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // NEW BACKEND URL (no trailing slash)
-  const API_URL =
-    "https://quiz-app-backend2-khiacyf5s-khushi-rastogis-projects-5e58af8c.vercel.app";
+  // UPDATE with your Render backend URL after deployment
+  const API_URL = "https://quiz-app-backend3.onrender.com";
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,7 +29,6 @@ const StartPage = ({ onStartQuiz }) => {
     setLoading(true);
 
     try {
-      console.log("Calling API:", `${API_URL}/api/questions`);
       const response = await axios.get(`${API_URL}/api/questions`);
 
       if (response.data.results && response.data.results.length === 15) {
