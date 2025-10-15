@@ -6,7 +6,7 @@ const StartPage = ({ onStartQuiz }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // UPDATE with your Render backend URL after deployment
+  // YOUR RENDER BACKEND URL (update this!)
   const API_URL = "https://quiz-app-backend3.onrender.com";
 
   const validateEmail = (email) => {
@@ -29,6 +29,7 @@ const StartPage = ({ onStartQuiz }) => {
     setLoading(true);
 
     try {
+      console.log("Calling:", `${API_URL}/api/questions`);
       const response = await axios.get(`${API_URL}/api/questions`);
 
       if (response.data.results && response.data.results.length === 15) {
