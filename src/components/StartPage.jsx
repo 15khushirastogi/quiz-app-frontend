@@ -6,9 +6,9 @@ const StartPage = ({ onStartQuiz }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Hardcode the backend URL (NO trailing slash)
+  // UPDATE TO YOUR NEW BACKEND URL
   const API_URL =
-    "https://quiz-71zku2cda-khushi-rastogis-projects-5e58af8c.vercel.app";
+    "https://quiz-ixi9yqjic-khushi-rastogis-projects-5e58af8c.vercel.app";
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -30,7 +30,6 @@ const StartPage = ({ onStartQuiz }) => {
     setLoading(true);
 
     try {
-      // Make sure there's only ONE slash before api
       const response = await axios.get(`${API_URL}/api/questions`);
 
       if (response.data.results && response.data.results.length === 15) {
